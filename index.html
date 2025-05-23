@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contagem Regressiva - 6 de Junho de 2025</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
+      padding: 50px 20px;
+      overflow: hidden;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #b30059;
+      margin-bottom: 10px;
+    }
+    #subtitle {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #404040;
+    }
+    #countdown {
+      font-size: 3em;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 40px;
+    }
+    #message {
+      font-size: 2em;
+      margin-top: 20px;
+      color: crimson;
+      animation: pulse 2s infinite;
+    }
+    .invitation-box {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hearts {
+      font-size: 2em;
+      color: #ff66b2;
+      margin-top: 20px;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: red;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+    @keyframes explode {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(0.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="invitation-box">
+    <h1>Contagem Regressiva para 6 de Junho de 2025</h1>
+    <div id="subtitle">Uma data muito especial que vai mudar nossas vidas para sempre ❤️</div>
+    <div id="countdown">Carregando...</div>
+    <div id="message">Eu amo você, Bárbara. Você é minha vida! 💖</div>
+    <div class="hearts">💌 💕 💍 💕 💌</div>
+  </div>
+
+  <script>
+    const countdownElement = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const targetDate = new Date("2025-06-06T00:00:00");
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        countdownElement.textContent = "Chegou o grande dia!";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function launchFirework() {
+      const count = 15;
+      for (let i = 0; i < count; i++) {
+        const fw = document.createElement('div');
+        fw.classList.add('firework');
+        fw.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        fw.style.left = `${Math.random() * window.innerWidth}px`;
+        fw.style.top = `${Math.random() * window.innerHeight}px`;
+        fw.style.setProperty('--x', (Math.random() - 0.5) * 200);
+        fw.style.setProperty('--y', (Math.random() - 0.5) * 200);
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1000);
+      }
+    }
+    setInterval(launchFirework, 1800);
+  </script>
+</body>
+</html>
